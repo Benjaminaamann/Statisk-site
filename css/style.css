@@ -18,7 +18,7 @@ html {
 
   --field: #eee8de;
 
-  --green: #57b737;
+  --green: #586454;
   --text: #111111;
 
   --muted-on-hero: rgba(255, 255, 255, 0.85);
@@ -277,6 +277,19 @@ body.page .logo {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
+}
+.new-price {
+  font-weight: 700;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.old-price {
+  margin-left: 8px;
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.4);
+  font-style: italic;
+  font-size: 13px;
 }
 
 .product-card {
