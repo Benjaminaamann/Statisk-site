@@ -21,26 +21,35 @@
     </header>
 
     <main class="container">
-      <a class="back-link" href="productlist.html">← Back to product list</a>
+      <div class="page-top">
+        <a class="back-link" href="productlist.html">← Back to product list</a>
+        <span></span>
+      </div>
 
-      <section class="product-page" aria-label="Product details">
-        <div class="product-image-box">
+      <section class="product-layout" aria-label="Product details">
+        <!-- Left: image card -->
+        <div class="product-image-card">
           <img class="product-image" src="" alt="" />
         </div>
 
-        <div class="product-info-box">
-          <p class="product-breadcrumb"></p>
+        <!-- Right: info card -->
+        <div class="product-info-card">
+          <p class="breadcrumb product-breadcrumb"></p>
 
           <h1 class="product-title"></h1>
 
+          <!-- Optional short description (if you use it in JS) -->
+          <p class="product-desc product-shortdesc"></p>
+
           <p class="product-price-line">
-            <span class="product-price"></span>
-            <span class="product-old-price"></span>
+            <span class="product-price-now product-price"></span>
+            <span class="product-price-old product-old-price"></span>
           </p>
 
-          <p class="product-stock"></p>
+          <p class="stock product-stock"></p>
 
-          <div class="product-description"></div>
+          <!-- If your API description is HTML, keep it in a div -->
+          <div class="product-desc product-description"></div>
 
           <ul class="product-specs">
             <li><strong>Brand:</strong> <span class="spec-brand"></span></li>
@@ -51,6 +60,19 @@
             <li><strong>Season:</strong> <span class="spec-season"></span></li>
             <li><strong>Gender:</strong> <span class="spec-gender"></span></li>
           </ul>
+
+          <!-- Optional buy row (only if your JS already supports it) -->
+          <div class="buy-row">
+            <select aria-label="Choose size">
+              <option selected disabled>Select</option>
+              <option>XS</option>
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+              <option>XL</option>
+            </select>
+            <button class="add-to-basket" type="button">Add to basket</button>
+          </div>
         </div>
       </section>
     </main>
