@@ -2,42 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FashionRus</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body class="index" id="top">
+  <body>
     <header class="site-header">
-      <div class="container header-inner">
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="index.html">Categories</a>
-          <a href="productlist.html?category=Accessories">Brands</a>
-          <a href="productlist.html?category=Apparel">Seasons</a>
+      <div class="header-left">
+        <nav class="main-nav">
+          <a href="index.html">CATEGORIES</a>
+          <a href="#">BRANDS</a>
+          <a href="#">SEASONS</a>
         </nav>
+      </div>
 
-        <a class="logo" href="index.html">Fashion<span class="r">R</span>us</a>
+      <a class="logo" href="index.html"> FASHION<span>R</span>US </a>
+
+      <div class="header-right">
+        <button class="icon-btn">🔍</button>
+        <button class="icon-btn">♡</button>
+        <button class="icon-btn">🛒</button>
       </div>
     </header>
 
-    <!-- HERO (put your own image here) -->
     <section class="hero">
-      <img src="images/underground-billede.jpg" alt="Hero image" />
+      <img src="images/underground-billede.jpg" />
     </section>
 
-    <main class="container">
-      <h2 class="index-title">Categories</h2>
+    <h2 class="index-title">Categories</h2>
 
-      <!-- JS will insert category cards here -->
-      <section
-        class="categories-grid"
-        aria-label="Categories"
-        id="category_list_container"
-      ></section>
-    </main>
+    <section class="categories-grid" id="category_list_container"></section>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
+      <div class="newsletter">
+        <input type="email" placeholder="E-MAIL" />
+        <button>SIGN UP</button>
+      </div>
+
+      <div class="footer-bottom">
         <small>FashionRus • Benjamin Jaffe Aamann</small>
         <a href="#top">To the top</a>
       </div>

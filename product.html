@@ -2,85 +2,80 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FashionRus - Product</title>
+    <title>Product</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body class="product" id="top">
+  <body>
     <header class="site-header">
-      <div class="container header-inner">
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="index.html">Categories</a>
-          <a href="productlist.html?category=Accessories">Brands</a>
-          <a href="productlist.html?category=Apparel">Seasons</a>
+      <div class="header-left">
+        <nav class="main-nav">
+          <a href="index.html">CATEGORIES</a>
+          <a href="#">BRANDS</a>
+          <a href="#">SEASONS</a>
         </nav>
+      </div>
 
-        <a class="logo" href="index.html">Fashion<span class="r">R</span>us</a>
+      <a class="logo" href="index.html"> FASHION<span>R</span>US </a>
+
+      <div class="header-right">
+        <button class="icon-btn">🔍</button>
+        <button class="icon-btn">♡</button>
+        <button class="icon-btn">🛒</button>
       </div>
     </header>
 
-    <main class="container">
-      <div class="page-top">
-        <a class="back-link" href="productlist.html?category=Accessories"
-          >← Back to product list</a
-        >
-        <span></span>
+    <a href="productlist.html">Back to product list</a>
+
+    <section class="product-layout">
+      <div>
+        <img class="product-image product-image-big" />
       </div>
 
-      <section class="product-layout" aria-label="Product details">
-        <!-- Left: image card -->
-        <div class="product-image-card">
-          <img class="product-image" src="" alt="" />
+      <div>
+        <p class="product-breadcrumb"></p>
+
+        <h1 class="product-title"></h1>
+
+        <p>
+          <span class="product-price"></span>
+          <span class="product-old-price"></span>
+        </p>
+
+        <p class="product-stock"></p>
+
+        <div class="product-description"></div>
+
+        <ul>
+          <li>Brand: <span class="spec-brand"></span></li>
+          <li>Category: <span class="spec-category"></span></li>
+          <li>Type: <span class="spec-type"></span></li>
+          <li>Season: <span class="spec-season"></span></li>
+          <li>Gender: <span class="spec-gender"></span></li>
+        </ul>
+
+        <div class="buy-row">
+          <select>
+            <option>Select</option>
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+          </select>
+
+          <button class="add-to-basket">Add to basket</button>
         </div>
-
-        <!-- Right: info card -->
-        <div class="product-info-card">
-          <p class="breadcrumb product-breadcrumb"></p>
-
-          <h1 class="product-title"></h1>
-
-          <!-- Optional short description (if you use it in JS) -->
-          <p class="product-desc product-shortdesc"></p>
-
-          <p class="product-price-line">
-            <span class="product-price-now product-price"></span>
-            <span class="product-price-old product-old-price"></span>
-          </p>
-
-          <p class="stock product-stock"></p>
-
-          <!-- If your API description is HTML, keep it in a div -->
-          <div class="product-desc product-description"></div>
-
-          <ul class="product-specs">
-            <li><strong>Brand:</strong> <span class="spec-brand"></span></li>
-            <li>
-              <strong>Category:</strong> <span class="spec-category"></span>
-            </li>
-            <li><strong>Type:</strong> <span class="spec-type"></span></li>
-            <li><strong>Season:</strong> <span class="spec-season"></span></li>
-            <li><strong>Gender:</strong> <span class="spec-gender"></span></li>
-          </ul>
-
-          <!-- Optional buy row (only if your JS already supports it) -->
-          <div class="buy-row">
-            <select aria-label="Choose size">
-              <option selected disabled>Select</option>
-              <option>XS</option>
-              <option>S</option>
-              <option>M</option>
-              <option>L</option>
-              <option>XL</option>
-            </select>
-            <button class="add-to-basket" type="button">Add to basket</button>
-          </div>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
+      <div class="newsletter">
+        <input placeholder="E-MAIL" />
+        <button>SIGN UP</button>
+      </div>
+
+      <div class="footer-bottom">
         <small>FashionRus • Benjamin Jaffe Aamann</small>
         <a href="#top">To the top</a>
       </div>
