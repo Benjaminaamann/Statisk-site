@@ -26,8 +26,40 @@
         <a class="back-link" href="index.html">← Back to categories</a>
       </div>
 
-      <!-- JS inserts product cards here -->
+      <!-- Products grid (JS inserts product cards here) -->
       <section class="product-grid" aria-label="Products"></section>
+
+      <!-- Template for 1 product card -->
+      <template id="product-card-template">
+        <article class="product-card">
+          <!-- Badges -->
+          <div class="product-badges">
+            <span class="badge badge-sale">-0%</span>
+            <span class="badge badge-soldout">Sold out</span>
+          </div>
+
+          <div class="product-image-wrap">
+            <img class="product-image" src="" alt="" />
+          </div>
+
+          <div class="product-body">
+            <h2 class="product-name"></h2>
+
+            <p class="product-meta">
+              <span class="product-brand"></span>
+              <span class="dot">•</span>
+              <span class="product-season"></span>
+            </p>
+
+            <p class="product-price">
+              <span class="price-now"></span>
+              <span class="price-old"></span>
+            </p>
+
+            <a class="see-product" href="#">See product</a>
+          </div>
+        </article>
+      </template>
     </main>
 
     <footer class="site-footer">
