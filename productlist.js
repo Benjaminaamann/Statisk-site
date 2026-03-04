@@ -1,51 +1,66 @@
-const endpoint = "https://kea-alt-del.dk/t7/api/products?limit=30";
+"use strict";
 
+// 1) Read category from URL
+const params = new URLSearchParams(window.location.search);
+const category = params.get("category"); // e.g. "Accessories"
+
+// 2) Elements
 const grid = document.querySelector(".product-grid");
 const template = document.querySelector("#product-card-template");
-const filterButtons = document.querySelectorAll(".filter-btn");
+const title = document.querySelector(".page-title");
+const buttons = document.querySelectorAll(".filter-btn");
 
+// 3) Store products for filtering
 let allProducts = [];
 
-// 1) Fetch produkter (limit 30)
+// Show category in the heading
+if (title && category) title.textContent = category;
+
+// 4) Fetch products for chosen category (limit 30 so filter has enough)
+const endpoint = `https://kea-alt-del.dk/t7/api/products?category=${encodeURIComponent(
+  category,
+)}&limit=30`;
+
 fetch(endpoint)
   .then((res) => res.json())
-  .then((data) => {
-    allProducts = data;
-    renderProducts(allProducts);
+  .then((products) => {
+    allProducts = products;
+
+    // Show all first (10 products)
+    renderProducts(allProducts.slice(0, 10));
   });
 
-// 2) Filter-knapper
-filterButtons.forEach((btn) => {
+// 5) Filter buttons
+buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    // Vis aktiv knap (valgfrit men simpelt)
-    filterButtons.forEach((b) => b.classList.remove("is-active"));
+    // active class (optional)
+    buttons.forEach((b) => b.classList.remove("is-active"));
     btn.classList.add("is-active");
 
-    // Læs tekstindholdet fra knappen (som i undervisningen)
-    const chosen = btn.textContent.trim();
+    const chosen = btn.textContent.trim(); // "All", "Men", "Women", "Unisex"
 
-    const filtered =
+    let filtered =
       chosen === "All"
         ? allProducts
-        : allProducts.filter((product) => product.gender === chosen);
+        : allProducts.filter((p) => p.gender === chosen);
 
-    renderProducts(filtered);
+    renderProducts(filtered.slice(0, 10));
   });
 });
 
-// 3) Render til DOM
+// 6) Render function
 function renderProducts(products) {
   grid.innerHTML = "";
 
   products.forEach((product) => {
     const clone = template.content.cloneNode(true);
 
-    // Billede (KEA endpoint bruger produktets id)
+    // Image
     const img = clone.querySelector(".product-image");
     img.src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
     img.alt = product.productdisplayname;
 
-    // Tekst
+    // Text
     clone.querySelector(".product-name").textContent =
       product.productdisplayname;
     clone.querySelector(".product-brand").textContent =
@@ -53,12 +68,18 @@ function renderProducts(products) {
     clone.querySelector(".product-season").textContent =
       `Season: ${product.season}`;
 
-    // Pris (simpelt)
+    // Price (simple)
     clone.querySelector(".price-now").textContent = `${product.price} DKK`;
-    clone.querySelector(".price-old").textContent = "";
 
-    // Link til product.html (id i url)
+    // Link
     clone.querySelector(".see-product").href = `product.html?id=${product.id}`;
+
+    // Clean optional fields if they exist in template
+    const oldPrice = clone.querySelector(".price-old");
+    if (oldPrice) oldPrice.textContent = "";
+
+    const badges = clone.querySelector(".product-badges");
+    if (badges) badges.innerHTML = "";
 
     grid.appendChild(clone);
   });
