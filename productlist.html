@@ -26,17 +26,21 @@
         <a class="back-link" href="index.html">← Back to categories</a>
       </div>
 
+      <!-- FILTER BUTTONS (08.02 filter) -->
+      <div class="filters" aria-label="Filter by gender">
+        <button class="filter-btn is-active" type="button">All</button>
+        <button class="filter-btn" type="button">Men</button>
+        <button class="filter-btn" type="button">Women</button>
+        <button class="filter-btn" type="button">Unisex</button>
+      </div>
+
       <!-- Products grid (JS inserts product cards here) -->
       <section class="product-grid" aria-label="Products"></section>
 
       <!-- Template for 1 product card -->
       <template id="product-card-template">
         <article class="product-card">
-          <!-- Badges -->
-          <div class="product-badges">
-            <span class="badge badge-sale">-0%</span>
-            <span class="badge badge-soldout">Sold out</span>
-          </div>
+          <div class="product-badges"></div>
 
           <div class="product-image-wrap">
             <img class="product-image" src="" alt="" />

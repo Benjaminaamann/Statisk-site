@@ -1,30 +1,51 @@
-"use strict";
+const endpoint = "https://kea-alt-del.dk/t7/api/products?limit=30";
 
-const endpoint = "https://kea-alt-del.dk/t7/api/products?limit=10";
+const grid = document.querySelector(".product-grid");
+const template = document.querySelector("#product-card-template");
+const filterButtons = document.querySelectorAll(".filter-btn");
 
-document.addEventListener("DOMContentLoaded", init);
+let allProducts = [];
 
-function init() {
-  fetch(endpoint)
-    .then((res) => res.json())
-    .then(showProducts);
-}
+// 1) Fetch produkter (limit 30)
+fetch(endpoint)
+  .then((res) => res.json())
+  .then((data) => {
+    allProducts = data;
+    renderProducts(allProducts);
+  });
 
-function showProducts(products) {
-  const grid = document.querySelector(".product-grid");
-  const template = document.querySelector("#product-card-template");
+// 2) Filter-knapper
+filterButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    // Vis aktiv knap (valgfrit men simpelt)
+    filterButtons.forEach((b) => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
 
+    // Læs tekstindholdet fra knappen (som i undervisningen)
+    const chosen = btn.textContent.trim();
+
+    const filtered =
+      chosen === "All"
+        ? allProducts
+        : allProducts.filter((product) => product.gender === chosen);
+
+    renderProducts(filtered);
+  });
+});
+
+// 3) Render til DOM
+function renderProducts(products) {
   grid.innerHTML = "";
 
   products.forEach((product) => {
     const clone = template.content.cloneNode(true);
 
-    // Image
-    clone.querySelector(".product-image").src =
-      `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
-    clone.querySelector(".product-image").alt = product.productdisplayname;
+    // Billede (KEA endpoint bruger produktets id)
+    const img = clone.querySelector(".product-image");
+    img.src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
+    img.alt = product.productdisplayname;
 
-    // Text
+    // Tekst
     clone.querySelector(".product-name").textContent =
       product.productdisplayname;
     clone.querySelector(".product-brand").textContent =
@@ -32,40 +53,12 @@ function showProducts(products) {
     clone.querySelector(".product-season").textContent =
       `Season: ${product.season}`;
 
-    // Link to product page
+    // Pris (simpelt)
+    clone.querySelector(".price-now").textContent = `${product.price} DKK`;
+    clone.querySelector(".price-old").textContent = "";
+
+    // Link til product.html (id i url)
     clone.querySelector(".see-product").href = `product.html?id=${product.id}`;
-
-    // Conditional rendering (betinget visning)
-    const card = clone.querySelector(".product-card");
-
-    const saleBadge = clone.querySelector(".badge-sale");
-    const soldoutBadge = clone.querySelector(".badge-soldout");
-
-    const priceNow = clone.querySelector(".price-now");
-    const priceOld = clone.querySelector(".price-old");
-
-    // SOLD OUT
-    if (product.soldout) {
-      card.classList.add("soldOut");
-    } else {
-      soldoutBadge.remove(); // if not sold out, remove badge
-    }
-
-    // DISCOUNT
-    if (product.discount) {
-      card.classList.add("onSale");
-      saleBadge.textContent = `-${product.discount}%`;
-
-      const newPrice = Math.round(
-        product.price - (product.price * product.discount) / 100,
-      );
-      priceNow.textContent = `${newPrice} DKK`;
-      priceOld.textContent = `${product.price} DKK`;
-    } else {
-      saleBadge.remove(); // if no discount, remove badge
-      priceNow.textContent = `${product.price} DKK`;
-      priceOld.remove(); // remove old price if not needed
-    }
 
     grid.appendChild(clone);
   });
