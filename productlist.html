@@ -2,77 +2,79 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FashionRus - Product List</title>
+    <title>Product List</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body class="productlist" id="top">
+  <body>
     <header class="site-header">
-      <div class="container header-inner">
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="index.html">Categories</a>
-          <a href="productlist.html?category=Accessories">Brands</a>
-          <a href="productlist.html?category=Apparel">Seasons</a>
-        </nav>
+      <div class="header-left">
+        <button class="filter-toggle">ALL FILTERS</button>
 
-        <a class="logo" href="index.html">Fashion<span class="r">R</span>us</a>
+        <nav class="main-nav">
+          <a href="index.html">CATEGORIES</a>
+          <a href="#">BRANDS</a>
+          <a href="#">SEASONS</a>
+        </nav>
+      </div>
+
+      <a class="logo" href="index.html"> FASHION<span>R</span>US </a>
+
+      <div class="header-right">
+        <button class="icon-btn">🔍</button>
+        <button class="icon-btn">♡</button>
+        <button class="icon-btn">🛒</button>
       </div>
     </header>
 
-    <main class="container">
-      <div class="page-top">
-        <h1 class="page-title">Product List</h1>
-        <a class="back-link" href="index.html">← Back to categories</a>
-      </div>
+    <div class="filter-menu">
+      <button class="filter-btn is-active">All</button>
+      <button class="filter-btn">Men</button>
+      <button class="filter-btn">Women</button>
+      <button class="filter-btn">Unisex</button>
+    </div>
 
-      <!-- FILTER BUTTONS (08.02 filter) -->
-      <div class="filters" aria-label="Filter by gender">
-        <button class="filter-btn is-active" type="button">All</button>
-        <button class="filter-btn" type="button">Men</button>
-        <button class="filter-btn" type="button">Women</button>
-        <button class="filter-btn" type="button">Unisex</button>
-      </div>
+    <div class="page-top">
+      <h1 class="page-title"></h1>
 
-      <!-- Products grid (JS inserts product cards here) -->
-      <section class="product-grid" aria-label="Products"></section>
+      <a href="index.html">Back to categories</a>
+    </div>
 
-      <!-- Template for 1 product card -->
-      <template id="product-card-template">
-        <article class="product-card">
-          <div class="product-badges"></div>
+    <section class="product-grid"></section>
 
-          <div class="product-image-wrap">
-            <img class="product-image" src="" alt="" />
-          </div>
+    <template id="product-card-template">
+      <article class="product-card">
+        <img class="product-image" />
 
-          <div class="product-body">
-            <h2 class="product-name"></h2>
+        <h2 class="product-name"></h2>
 
-            <p class="product-meta">
-              <span class="product-brand"></span>
-              <span class="dot">•</span>
-              <span class="product-season"></span>
-            </p>
+        <p class="product-meta">
+          <span class="product-brand"></span>
+          <span class="product-season"></span>
+        </p>
 
-            <p class="product-price">
-              <span class="price-now"></span>
-              <span class="price-old"></span>
-            </p>
+        <p class="product-price">
+          <span class="price-now"></span>
+          <span class="price-old"></span>
+        </p>
 
-            <a class="see-product" href="#">See product</a>
-          </div>
-        </article>
-      </template>
-    </main>
+        <a class="see-product">See product</a>
+      </article>
+    </template>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
+      <div class="newsletter">
+        <input placeholder="E-MAIL" />
+        <button>SIGN UP</button>
+      </div>
+
+      <div class="footer-bottom">
         <small>FashionRus • Benjamin Jaffe Aamann</small>
         <a href="#top">To the top</a>
       </div>
     </footer>
 
+    <script src="header.js"></script>
     <script src="productlist.js"></script>
   </body>
 </html>
